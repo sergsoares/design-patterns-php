@@ -2,7 +2,7 @@
 
 class Calculadora
 {
-    public function calcula(Orcamento $orcamento, $imposto) 
+    public function calcula(Orcamento $orcamento, Imposto $imposto) 
     {
         return $imposto->calcula($orcamento);
     }

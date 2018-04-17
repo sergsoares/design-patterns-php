@@ -1,6 +1,7 @@
 <?php
 
 require 'Calculadora.php';
+require 'Imposto.php';
 require 'Orcamento.php';
 require 'ICMS.php';
 require 'ISS.php';
