@@ -52,4 +52,17 @@ class CalculadorDeDescontoTest extends TestCase
     $this->assertEquals(1200, $valorComDesconto);
   }
 
+  public function testCalculaReturnDiscountWhenExistsLapisAndCanetaInOrcamento() 
+  {
+    $calculadora = new CalculadoraDeDesconto();
+    $orcamento = new Orcamento('Petta');
+    $lapis = new Item('Lapis', 50);
+    $caneta = new Item('Caneta', 50);
+    $orcamento->adicionaItem($lapis);
+    $orcamento->adicionaItem($caneta);
+
+    $valorComDesconto = $calculadora->calcula($orcamento);
+
+    $this->assertEquals(95, $valorComDesconto);
+  }
 }
