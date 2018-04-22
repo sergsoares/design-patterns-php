@@ -10,12 +10,12 @@ class CalculadoraDeDesconto
   public function calcula(Orcamento $orcamento): float
   {
     $descontoAcima1500 = new DescontoOrcamentoAcima1500();
-    $descontoMais5Itens = new DescontoOrcamentoMais5Itens($orcamento);
+    $descontoMais5Itens = new DescontoOrcamentoMais5Itens();
     $semDesconto = new SemDesconto();
 
-    $descontoAcima1500->setProximo($descontoMais5Itens);
-    $descontoMais5Itens->setProximo($semDesconto);
+    $descontoMais5Itens->setProximo($descontoAcima1500);
+    $descontoAcima1500->setProximo($semDesconto);
 
-    return $descontoAcima1500->desconta($orcamento);
+    return $descontoMais5Itens->desconta($orcamento);
   }
 }

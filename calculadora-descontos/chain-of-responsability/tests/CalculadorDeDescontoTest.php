@@ -13,7 +13,7 @@ class CalculadorDeDescontoTest extends TestCase
     $this->assertEquals(0, $calculadora->calcula($orcamento));
   }
 
-  public function testCalculaReturnWith10PercentOfDiscountWhenOrcamentoHas10Itens()
+  public function testCalculaReturnWith10PercentOfDiscountWhenOrcamentoHas5Itens()
   {
     $calculadora = new CalculadoraDeDesconto();
     $orcamento = new Orcamento('Paulo');
