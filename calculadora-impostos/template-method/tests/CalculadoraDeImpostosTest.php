@@ -2,6 +2,9 @@
 
 use PHPUnit\Framework\TestCase;
 require 'CalculadoraDeImpostos.php';
+require 'Imposto.php';
+require 'IKCV.php';
+require 'ICPP.php';
 
 class CalculadoraDeImpostosTest extends TestCase
 {
@@ -9,16 +12,18 @@ class CalculadoraDeImpostosTest extends TestCase
   {
     $calculadora = new CalculadoraDeImpostos();
     $orcamento = new Orcamento(1000, 5);
-    $imposto = $calculadora->calcula($orcamento, 'ICPP');
+    $imposto = new ICPP();
+    $calculated = $calculadora->calcula($orcamento, $imposto);
 
-    $this->assertInternalType('float', $imposto);
+    $this->assertInternalType('float', $calculated);
   }
 
   public function testICPPApply5PercentOfTaxAboutTheValueWhenValueIsLessThan500()
   {
     $calculadora = new CalculadoraDeImpostos();
     $orcamento = new Orcamento(400, 5);
-    $calculated = $calculadora->calcula($orcamento, 'ICPP');
+    $imposto = new ICPP();
+    $calculated = $calculadora->calcula($orcamento, $imposto);
 
     $this->assertEquals(20, $calculated);
   }
@@ -27,7 +32,8 @@ class CalculadoraDeImpostosTest extends TestCase
   {
     $calculadora = new CalculadoraDeImpostos();
     $orcamento = new Orcamento(1000, 5);
-    $calculated = $calculadora->calcula($orcamento, 'ICPP');
+    $imposto = new ICPP();
+    $calculated = $calculadora->calcula($orcamento, $imposto);
     $this->assertEquals(70, $calculated);
   }
 
@@ -35,7 +41,8 @@ class CalculadoraDeImpostosTest extends TestCase
   {
     $calculadora = new CalculadoraDeImpostos();
     $orcamento = new Orcamento(1000, 8);
-    $calculated = $calculadora->calcula($orcamento, 'IKCV');
+    $imposto = new IKCV();
+    $calculated = $calculadora->calcula($orcamento, $imposto);
     $this->assertEquals(100, $calculated);
   }
 
@@ -43,7 +50,8 @@ class CalculadoraDeImpostosTest extends TestCase
   {
     $calculadora = new CalculadoraDeImpostos();
     $orcamento = new Orcamento(400, 2);
-    $calculated = $calculadora->calcula($orcamento, 'IKCV');
+    $imposto = new IKCV();
+    $calculated = $calculadora->calcula($orcamento, $imposto);
     $this->assertEquals(24, $calculated);
   }
 }
