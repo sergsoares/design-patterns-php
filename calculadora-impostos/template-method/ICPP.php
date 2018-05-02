@@ -1,13 +1,19 @@
 <?php
 
-class ICPP implements Imposto
+class ICPP extends TemplateDeImpostoCondicional
 {
-  public function calcula(Orcamento $orcamento): float
+  public function deveUsarTaxaMaxima(Orcamento $orcamento)
   {
-      if($orcamento->valor < 500) {
-        return $orcamento->valor * 0.05;
-      } else {
-        return $orcamento->valor * 0.07;
-      }
-  } 
+    return $orcamento->valor < 500;
+  }
+
+  public function taxaMaxima(Orcamento $orcamento)
+  {
+    return $orcamento->valor * 0.05;
+  }
+
+  public function taxaMinima(Orcamento $orcamento)
+  {
+    return $orcamento->valor * 0.07;
+  }
 }

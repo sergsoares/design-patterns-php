@@ -3,6 +3,7 @@
 use PHPUnit\Framework\TestCase;
 require 'CalculadoraDeImpostos.php';
 require 'Imposto.php';
+require 'TemplateDeImpostoCondicional.php';
 require 'IKCV.php';
 require 'ICPP.php';
 

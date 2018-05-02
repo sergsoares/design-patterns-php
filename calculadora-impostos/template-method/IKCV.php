@@ -1,13 +1,19 @@
 <?php
 
-class IKCV implements Imposto
+class IKCV extends TemplateDeImpostoCondicional
 {
-  public function calcula(Orcamento $orcamento): float
+  public function deveUsarTaxaMaxima(Orcamento $orcamento)
   {
-      if($orcamento->valor > 500 && $orcamento->itens > 5) {
-        return $orcamento->valor * 0.10;
-      } else {
-        return $orcamento->valor * 0.06;
-      }
+    return $orcamento->valor > 500 && $orcamento->itens > 5;
   }
+
+  public function taxaMaxima(Orcamento $orcamento)
+  {
+    return $orcamento->valor * 0.10;
+  }
+
+  public function taxaMinima(Orcamento $orcamento)
+  {
+    return $orcamento->valor * 0.06;
+  } 
 }
